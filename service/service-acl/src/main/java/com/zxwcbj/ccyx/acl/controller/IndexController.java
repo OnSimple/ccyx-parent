@@ -21,7 +21,7 @@ public class IndexController {
     public Result login() throws UnsupportedEncodingException {
         Map<String,String> map=new HashMap<>();
 
-        map.put("token", java.net.URLEncoder.encode("成功","UTF-8"));
+        map.put("token","token-admin");
          //map.put("token", "成功");
         return Result.ok(map);
     }
