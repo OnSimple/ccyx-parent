@@ -1,7 +1,6 @@
 package com.zxwcbj.ccyx.acl.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zxwcbj.ccyx.acl.service.RoleService;
 import com.zxwcbj.ccyx.common.result.Result;
@@ -19,15 +18,26 @@ import java.util.List;
 @RequestMapping("/admin/acl/role")
 @CrossOrigin
 public class RoleController {
+      //注入service
     @Autowired
     private RoleService roleService;
-    //1.查询角色列表
+    /**
+     * 查询角色列表
+     *
+     * @param current 当前页
+     * @param limit 每页显示记录数
+     * @param roleQueryVo
+     * @return com.zxwcbj.ccyx.common.result.Result
+     **/
+
     @ApiOperation("角色列表查询")
     @GetMapping("{current}/{limit}")
     public Result PageList(@PathVariable Long current,
                            @PathVariable Long limit,
                            RoleQueryVo roleQueryVo){
+        //创建page对象，传递当前页和每页记录数
         Page<Role> pageParms=new Page<>(current,limit);
+        //2 调用service方法实现条件分页查询，返回分页对象
         IPage<Role> pageModel=roleService.selectRolePage(pageParms,roleQueryVo);
         return Result.ok(pageModel);
     }
@@ -62,6 +72,7 @@ public class RoleController {
     //6 批量删除角色
     @ApiOperation("批量删除角色")
     @DeleteMapping("batchRemove")
+    //json  中的数组格式对应java中的List 集合
     public Result batchRemove(@RequestBody List<Long> roleList){
         roleService.removeByIds(roleList);
         return Result.ok(null);
