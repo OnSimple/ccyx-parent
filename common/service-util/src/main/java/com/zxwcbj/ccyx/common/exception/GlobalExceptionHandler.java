@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler(Exception.class)
-    @ResponseBody
+    @ExceptionHandler(Exception.class)//异常处理器.当你出现这个异常时调用下面的方法
+    @ResponseBody//返回json数据
     public Result error(Exception exception){
         exception.printStackTrace();
         return Result.fail(null);

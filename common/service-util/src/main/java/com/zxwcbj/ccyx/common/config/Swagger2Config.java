@@ -41,14 +41,14 @@ public class Swagger2Config {
         pars.add(tokenPar.build());
 
         Docket webApi = new Docket(DocumentationType.SWAGGER_2)
-                .groupName("webApi")
-                .apiInfo(webApiInfo())
+                .groupName("webApi")//进行分组，组的名称
+                .apiInfo(webApiInfo())//接口中的公共信息
                 .select()
                 //只显示api路径下的页面
                 .apis(RequestHandlerSelectors.basePackage("com.zxwcbj.ccyx"))
                 .paths(PathSelectors.regex("/api/.*"))
                 .build()
-                .globalOperationParameters(pars);
+                .globalOperationParameters(pars);//加载全局的分组参数
         return webApi;
     }
 

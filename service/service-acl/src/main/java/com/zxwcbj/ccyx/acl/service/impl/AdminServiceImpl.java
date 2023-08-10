@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements AdminService {
-
+     //1 用户列表
     @Override
     public IPage<Admin> selectUserPage(Page<Admin> pageParam, AdminQueryVo adminQueryVo) {
         String userName = adminQueryVo.getUsername();

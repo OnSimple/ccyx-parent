@@ -23,7 +23,6 @@ public class RoleController {
     private RoleService roleService;
     /**
      * 查询角色列表
-     *
      * @param current 当前页
      * @param limit 每页显示记录数
      * @param roleQueryVo
@@ -31,7 +30,7 @@ public class RoleController {
      **/
 
     @ApiOperation("角色列表查询")
-    @GetMapping("{current}/{limit}")
+    @GetMapping("{current}/ {limit}")
     public Result PageList(@PathVariable Long current,
                            @PathVariable Long limit,
                            RoleQueryVo roleQueryVo){

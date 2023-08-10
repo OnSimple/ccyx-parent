@@ -6,7 +6,7 @@ import lombok.Data;
 public class Result<T> {
 
     //状态码
-    private Integer code;
+        private Integer code;
     //信息
     private String message;
     //数据

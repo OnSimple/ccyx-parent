@@ -11,7 +11,10 @@ import java.util.Map;
 import static jodd.system.SystemUtil.info;
  @Api(tags = "登录接口")
 @RestController
- @CrossOrigin //跨域
+ @CrossOrigin
+ //跨域。当访问协议IP地址端口号 与访问时不一致时
+ // 游览器会报错(Ensure CORS response header values are valid) 如果不写就会出现跨域问题
+ //本质：浏览器对ajax请求一种限制
 @RequestMapping("/admin/acl/index" )
 public class IndexController {
 
