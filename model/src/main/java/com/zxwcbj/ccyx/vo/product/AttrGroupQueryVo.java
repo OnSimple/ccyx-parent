@@ -1,14 +1,13 @@
 package com.zxwcbj.ccyx.vo.product;
 
-import lombok.Data;
-import java.util.Date;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 @Data
 public class AttrGroupQueryVo {
 
-	@ApiModelProperty(value = "组名")
-	private String name;
+    @ApiModelProperty(value = "组名")
+    private String name;
 
 }
 

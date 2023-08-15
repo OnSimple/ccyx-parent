@@ -1,8 +1,8 @@
 package com.zxwcbj.ccyx.model.product;
 
-import com.zxwcbj.ccyx.model.base.BaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.zxwcbj.ccyx.model.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -12,22 +12,22 @@ import lombok.Data;
 @TableName("comment_replay")
 public class CommentReplay extends BaseEntity {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@ApiModelProperty(value = "commentId")
-	@TableField("comment_id")
-	private Long commentId;
+    @ApiModelProperty(value = "commentId")
+    @TableField("comment_id")
+    private Long commentId;
 
-	@ApiModelProperty(value = "nickName")
-	@TableField("nick_name")
-	private String nickName;
+    @ApiModelProperty(value = "nickName")
+    @TableField("nick_name")
+    private String nickName;
 
-	@ApiModelProperty(value = "icon")
-	@TableField("icon")
-	private String icon;
+    @ApiModelProperty(value = "icon")
+    @TableField("icon")
+    private String icon;
 
-	@ApiModelProperty(value = "content")
-	@TableField("content")
-	private String content;
+    @ApiModelProperty(value = "content")
+    @TableField("content")
+    private String content;
 
 }

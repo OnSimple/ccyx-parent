@@ -1,17 +1,15 @@
 package com.zxwcbj.ccyx.model.search;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.elasticsearch.common.geo.GeoPoint;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.*;
-
-import java.util.Date;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+import org.springframework.data.elasticsearch.annotations.GeoPointField;
 
 @Data
-@Document(indexName = "leaderes" ,shards = 3,replicas = 1)
+@Document(indexName = "leaderes", shards = 3, replicas = 1)
 public class LeaderEs {
 
     @Id

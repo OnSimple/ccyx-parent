@@ -9,18 +9,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)//异常处理器.当你出现这个异常时调用下面的方法
     @ResponseBody//返回json数据
-    public Result error(Exception exception){
+    public Result error(Exception exception) {
         exception.printStackTrace();
         return Result.fail(null);
     }
-        /**
+
+    /**
      * 自定义异常处理方法
+     *
      * @param ccxException
      * @return
      */
-      @ExceptionHandler(CcyxException.class)
-        @ResponseBody
-    private Result error(CcyxException ccxException){
+    @ExceptionHandler(CcyxException.class)
+    @ResponseBody
+    private Result error(CcyxException ccxException) {
         return Result.fail(null);
     }
 }

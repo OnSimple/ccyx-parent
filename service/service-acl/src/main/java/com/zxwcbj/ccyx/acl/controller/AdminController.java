@@ -40,11 +40,12 @@ public class AdminController {
     @ApiOperation("为用户进行角色分配")
     @PostMapping("doAssign")
     //参数有用户id和多个角色id
-        public Result doAssign(@RequestParam Long adminId,
+    public Result doAssign(@RequestParam Long adminId,
                            @RequestParam Long[] roleId) {
-        roleService.saveAdminRole(adminId,roleId);
+        roleService.saveAdminRole(adminId, roleId);
         return Result.ok(null);
     }
+
     //获取所有角色，和根据用户id查询用户分配角色列表
     @ApiOperation("获取用户角色")
     @GetMapping("toAssign/{adminId}")

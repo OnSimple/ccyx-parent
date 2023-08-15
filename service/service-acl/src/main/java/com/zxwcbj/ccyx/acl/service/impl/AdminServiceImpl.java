@@ -14,20 +14,20 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements AdminService {
-     //1 用户列表
+    //1 用户列表
     @Override
     public IPage<Admin> selectUserPage(Page<Admin> pageParam, AdminQueryVo adminQueryVo) {
         String userName = adminQueryVo.getUsername();
-        String name =adminQueryVo.getName();
-        LambdaQueryWrapper<Admin> wrapper =new LambdaQueryWrapper<>();
-        if(!StringUtils.isEmpty(userName)){
+        String name = adminQueryVo.getName();
+        LambdaQueryWrapper<Admin> wrapper = new LambdaQueryWrapper<>();
+        if (!StringUtils.isEmpty(userName)) {
             //wrapper.like(Admin::getUsername,userName);
-            wrapper.eq(Admin::getUsername,userName);
+            wrapper.eq(Admin::getUsername, userName);
         }
-        if(!StringUtils.isEmpty(name)){
-            wrapper.like(Admin::getName,name);
+        if (!StringUtils.isEmpty(name)) {
+            wrapper.like(Admin::getName, name);
         }
-        IPage<Admin> adminIPage=baseMapper.selectPage(pageParam,wrapper);
+        IPage<Admin> adminIPage = baseMapper.selectPage(pageParam, wrapper);
         return adminIPage;
     }
 }

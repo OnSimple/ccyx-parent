@@ -20,13 +20,13 @@ import java.io.Serializable;
 @ApiModel(description = "用户查询实体")
 public class AdminQueryVo implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@ApiModelProperty(value = "用户名")
-	private String username;
+    @ApiModelProperty(value = "用户名")
+    private String username;
 
-	@ApiModelProperty(value = "昵称")
-	private String name;
+    @ApiModelProperty(value = "昵称")
+    private String name;
 
 }
 

@@ -27,7 +27,7 @@ import java.util.List;
 public class Swagger2Config {
 
     @Bean
-    public Docket webApiConfig(){
+    public Docket webApiConfig() {
         List<Parameter> pars = new ArrayList<>();
         ParameterBuilder tokenPar = new ParameterBuilder();
         tokenPar.name("userId")
@@ -53,7 +53,7 @@ public class Swagger2Config {
     }
 
     @Bean
-    public Docket adminApiConfig(){
+    public Docket adminApiConfig() {
         List<Parameter> pars = new ArrayList<>();
         ParameterBuilder tokenPar = new ParameterBuilder();
         tokenPar.name("adminId")
@@ -77,7 +77,7 @@ public class Swagger2Config {
         return adminApi;
     }
 
-    private ApiInfo webApiInfo(){
+    private ApiInfo webApiInfo() {
         return new ApiInfoBuilder()
                 .title("网站-API文档")
                 .description("本文档描述了尚上优选网站微服务接口定义")
@@ -86,7 +86,7 @@ public class Swagger2Config {
                 .build();
     }
 
-    private ApiInfo adminApiInfo(){
+    private ApiInfo adminApiInfo() {
         return new ApiInfoBuilder()
                 .title("后台管理系统-API文档")
                 .description("本文档描述了尚上优选后台系统服务接口定义")

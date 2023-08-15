@@ -14,13 +14,13 @@ public enum ProcessStatus {
     CANCEL(-1, OrderStatus.CANCEL),
     PAY_FAIL(-2, OrderStatus.UNPAID);
 
-     @EnumValue
-    private Integer code ;
-    private OrderStatus orderStatus;
+    @EnumValue
+    private final Integer code;
+    private final OrderStatus orderStatus;
 
-    ProcessStatus(Integer code, OrderStatus orderStatus){
-        this.code=code;
-        this.orderStatus=orderStatus;
+    ProcessStatus(Integer code, OrderStatus orderStatus) {
+        this.code = code;
+        this.orderStatus = orderStatus;
     }
 
 }

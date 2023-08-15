@@ -1,14 +1,13 @@
 package com.zxwcbj.ccyx.vo.product;
 
-import lombok.Data;
-import java.util.Date;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 @Data
 public class CategoryQueryVo {
 
-	@ApiModelProperty(value = "分类名称")
-	private String name;
+    @ApiModelProperty(value = "分类名称")
+    private String name;
 
 }
 

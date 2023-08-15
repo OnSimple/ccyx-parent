@@ -2,9 +2,9 @@
 //
 package com.zxwcbj.ccyx.model.acl;
 
-import com.zxwcbj.ccyx.model.base.BaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.zxwcbj.ccyx.model.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -22,15 +22,15 @@ import lombok.Data;
 @TableName("role")
 public class Role extends BaseEntity {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@ApiModelProperty(value = "角色名称")
-	@TableField("role_name")
-	private String roleName;
+    @ApiModelProperty(value = "角色名称")
+    @TableField("role_name")
+    private String roleName;
 
-	@ApiModelProperty(value = "备注")
-	@TableField("remark")
-	private String remark;
+    @ApiModelProperty(value = "备注")
+    @TableField("remark")
+    private String remark;
 
 }
 

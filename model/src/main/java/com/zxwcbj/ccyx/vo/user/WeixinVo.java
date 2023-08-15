@@ -1,8 +1,6 @@
 package com.zxwcbj.ccyx.vo.user;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -11,11 +9,11 @@ import java.io.Serializable;
 @ApiModel(description = "weixinVo")
 public class WeixinVo implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private String iv;
-	private String encryptedData;
-	private String sessionKey;
-	private String openId;
+    private String iv;
+    private String encryptedData;
+    private String sessionKey;
+    private String openId;
 
 }
