@@ -47,38 +47,38 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
     @Override
     public List<Permission> getPermissionByRoleId(Long roleId) {
         //1. 根据角色id获取已选择的权限id集合
-        List<RolePermission> rolePermissionIdList =rolePermissionService.lambdaQuery()
+        List<RolePermission> rolePermissionIdList = rolePermissionService.lambdaQuery()
                 .select(RolePermission::getPermissionId)
-                .eq(RolePermission::getRoleId,roleId)
+                .eq(RolePermission::getRoleId, roleId)
                 .list();
         //2. 获取所有权限列表id(List<RolePermission>->List<Long>)
-        List<Long> permissionIdList=rolePermissionIdList.stream()
+        List<Long> permissionIdList = rolePermissionIdList.stream()
                 .map(RolePermission::getPermissionId)
                 .collect(Collectors.toList());
-       //List<Permission> permissionList = new ArrayList<>();
+        //List<Permission> permissionList = new ArrayList<>();
         List<Permission> permissionList = this.list();
         //3. 将权限列表的数据转为map，以权限id为key，权限为value
-        Map<Long,Permission> map=permissionList.stream()
+        Map<Long, Permission> map = permissionList.stream()
                 .collect(Collectors.toMap(Permission::getId, v -> v));
         //4. 先取出根节点集合，（注：一个根节点就代表一棵树）
         List<Permission> result = permissionList.stream()
-                .filter(i->i.getPid().equals(0L))
+                .filter(i -> i.getPid().equals(0L))
                 .collect(Collectors.toList());
         //5.为每个根节点置为层级为1
-        result.forEach(i->i.setLevel(1));
+        result.forEach(i -> i.setLevel(1));
         //进行递归，将每个子节点分配层级
-        permissionList.forEach(item ->{
-            if (permissionIdList.contains(item.getId())){
-                  //已选择的权限设置为true
-                item.setSelect(true);
-            }
-            item.setChildren(new ArrayList<>());
-            Permission superNode = map.get(item.getPid());
-            if (superNode != null) {
-                int level = superNode.getLevel() + 1;
-                item.setLevel(level);
-                superNode.getChildren().add(item);
-            }
+        permissionList.forEach(item -> {
+                    if (permissionIdList.contains(item.getId())) {
+                        //已选择的权限设置为true
+                        item.setSelect(true);
+                    }
+                    item.setChildren(new ArrayList<>());
+                    Permission superNode = map.get(item.getPid());
+                    if (superNode != null) {
+                        int level = superNode.getLevel() + 1;
+                        item.setLevel(level);
+                        superNode.getChildren().add(item);
+                    }
                 }
         );
         return result;
@@ -124,30 +124,31 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
         List<Permission> list = PermissionHelper.buildPermission(list1);
         return list;
     }
-/**
- * 给某个角色授权
- *
- * @param roleId
- * @param permissionId
- * @return void
- **/
-@Override
+
+    /**
+     * 给某个角色授权
+     *
+     * @param roleId
+     * @param permissionId
+     * @return void
+     **/
+    @Override
     public void saveRolePermission(Long roleId, Long[] permissionId) {
-    //删除所有已分配权限
-    //根据角色id删除role_permisssion表里面对应数据r
-    LambdaQueryWrapper<RolePermission> wrapper=new LambdaQueryWrapper<>();
-    wrapper.eq(RolePermission::getId,roleId);
-    rolePermissionService.remove(wrapper);
-    //2 重新分配
+        //删除所有已分配权限
+        //根据角色id删除role_permisssion表里面对应数据r
+        LambdaQueryWrapper<RolePermission> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(RolePermission::getId, roleId);
+        rolePermissionService.remove(wrapper);
+        //2 重新分配
 //遍历多个权限id，得到每个权限id，拿着每个权限id + 角色id添加角色权限关系表
-    List<RolePermission> rolePermissionList = new ArrayList<>();
-    for (Long rolepermission :permissionId){
-        RolePermission rolePermission=new RolePermission();
-        rolePermission.setRoleId(roleId);
-        rolePermission.setPermissionId(rolepermission);
-        rolePermissionList.add(rolePermission);
-    }
-    rolePermissionService.saveBatch(rolePermissionList);
+        List<RolePermission> rolePermissionList = new ArrayList<>();
+        for (Long rolepermission : permissionId) {
+            RolePermission rolePermission = new RolePermission();
+            rolePermission.setRoleId(roleId);
+            rolePermission.setPermissionId(rolepermission);
+            rolePermissionList.add(rolePermission);
+        }
+        rolePermissionService.saveBatch(rolePermissionList);
 
     }
 

@@ -1,7 +1,6 @@
 package com.zxwcbj.ccyx.acl.controller;
 
 import com.zxwcbj.ccyx.acl.service.PermissionService;
-import com.zxwcbj.ccyx.acl.service.RolePermissionService;
 import com.zxwcbj.ccyx.common.result.Result;
 import com.zxwcbj.ccyx.model.acl.Permission;
 import io.swagger.annotations.Api;
@@ -25,16 +24,18 @@ public class PermissionController {
         List<Permission> list = permissionService.getPermissionList();
         return Result.ok(list);
     }
+
     /*
-    *给某个角色授权
-    * */
+     *给某个角色授权
+     * */
     @ApiOperation("角色授权")
     @PostMapping("doAssign")
     public Result doAssign(@PathVariable Long roleId,
                            @PathVariable Long[] permissionId) {
-        permissionService.saveRolePermission(roleId,permissionId);
-        return  Result.ok(null);
+        permissionService.saveRolePermission(roleId, permissionId);
+        return Result.ok(null);
     }
+
     @ApiOperation("获得所有菜单和己分配的菜单")
     @GetMapping("toAssign/{roleId}")
     public Result toAssign(@PathVariable Long roleId) {

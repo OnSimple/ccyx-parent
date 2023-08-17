@@ -23,6 +23,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(CcyxException.class)
     @ResponseBody
     private Result error(CcyxException ccxException) {
-        return Result.fail(null);
+        return Result.build(null, ccxException.getCode(), ccxException.getMessage());
     }
 }

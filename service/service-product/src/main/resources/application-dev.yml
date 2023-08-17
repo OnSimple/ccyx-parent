@@ -1,5 +1,5 @@
 server:
-  port: 8201
+  port: 8203
 
 mybatis-plus:
   configuration:
@@ -9,10 +9,17 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://47.113.150.155:3306/shequ-acl?characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://47.113.150.155:3306/shequ-product?characterEncoding=utf-8&useSSL=false
     username: root
     password: Xiao926713
 
-  jackson:
+jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+
+minio:
+    endpoint: http://47.113.150.155:30002
+    accessKey: ReuNZuMGi5vCRe3h
+    secretKey: Lc4sF78UrCzMeiByHvsNnpQxskpEBole
+    bucketName: public
+

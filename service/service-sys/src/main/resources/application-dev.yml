@@ -11,7 +11,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://47.113.150.155:3306/shequ-sys?characterEncoding=utf-8&useSSL=false
     username: root
-    password: Xiao926713@
+    password: Xiao926713
 
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
