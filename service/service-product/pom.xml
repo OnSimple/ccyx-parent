@@ -21,8 +21,8 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-<!--这是我的的 -->
-		<!--minio oss依赖-->
+        <!--这是我的的 -->
+        <!--minio oss依赖-->
         <!--低版本的okhttp会报错提示 -->
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
@@ -41,12 +41,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
-    <!-- 日期工具栏依赖 -->
-    <dependency>
-        <groupId>joda-time</groupId>
-        <artifactId>joda-time</artifactId>
-        <version>2.10.1</version>
-    </dependency>
+        <!-- 日期工具栏依赖 -->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.10.1</version>
+        </dependency>
     </dependencies>
 
 </project>

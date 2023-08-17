@@ -32,13 +32,13 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupMapper, AttrGroup
 
     @Override
     public IPage<AttrGroup> selectPageAttrGroup(Page<AttrGroup> pageParam, AttrGroupQueryVo attrGroupQueryVo) {
-            String attributeName = attrGroupQueryVo.getName();
-    LambdaQueryWrapper<AttrGroup> wrapper = new LambdaQueryWrapper<>();
-    if (!StringUtils.isEmpty(attributeName)) {
-        wrapper.like(AttrGroup::getName, attributeName);
-    }
-    IPage<AttrGroup> iPage=baseMapper.selectPage(pageParam,wrapper);
-    return iPage;
+        String attributeName = attrGroupQueryVo.getName();
+        LambdaQueryWrapper<AttrGroup> wrapper = new LambdaQueryWrapper<>();
+        if (!StringUtils.isEmpty(attributeName)) {
+            wrapper.like(AttrGroup::getName, attributeName);
+        }
+        IPage<AttrGroup> iPage = baseMapper.selectPage(pageParam, wrapper);
+        return iPage;
     }
 
     //查询所有平台属性分组列表

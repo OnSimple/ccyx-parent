@@ -15,6 +15,6 @@ import java.util.List;
  * @since 2023-08-15
  */
 public interface SkuPosterService extends IService<SkuPoster> {
-//根据d查询商品海报列表
+    //根据d查询商品海报列表
     List<SkuPoster> getPosterListBySkuId(Long id);
 }

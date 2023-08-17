@@ -68,7 +68,7 @@ public class FileUploadServiceImpl implements FileUploadService {
                         .build());
         //上传之后文件路径
         // https://ccyx-zxwcbj.oss-cn-beijing.aliyuncs.com/01.jpg
-        String url =  endpoint +"/" +bucketName + "/" +   fileName;
+        String url = endpoint + "/" + bucketName + "/" + fileName;
         System.out.println(url);
         //返回
         return url;

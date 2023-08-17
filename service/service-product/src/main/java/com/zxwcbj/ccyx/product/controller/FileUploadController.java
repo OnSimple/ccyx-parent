@@ -1,7 +1,6 @@
 package com.zxwcbj.ccyx.product.controller;
 
 import com.zxwcbj.ccyx.common.result.Result;
-
 import com.zxwcbj.ccyx.product.service.FileUploadService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -24,7 +23,7 @@ public class FileUploadController {
     //文件上传,图片上传的方法
     @ApiOperation("图片上传")
     @PostMapping("fileUpload")
-    public Result fileUpload(MultipartFile file) throws Exception{
+    public Result fileUpload(MultipartFile file) throws Exception {
         return Result.ok(fileUploadService.fileUpload(file));
     }
 }

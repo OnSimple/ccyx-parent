@@ -20,11 +20,11 @@ import java.util.List;
  */
 @Service
 public class SkuPosterServiceImpl extends ServiceImpl<SkuPosterMapper, SkuPoster> implements SkuPosterService {
-//根据d查询商品海报列表
+    //根据d查询商品海报列表
     @Override
     public List<SkuPoster> getPosterListBySkuId(Long id) {
         LambdaQueryWrapper<SkuPoster> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(SkuPoster::getSkuId,id);
+        wrapper.eq(SkuPoster::getSkuId, id);
         List<SkuPoster> skuPosterList = baseMapper.selectList(wrapper);
         return skuPosterList;
     }

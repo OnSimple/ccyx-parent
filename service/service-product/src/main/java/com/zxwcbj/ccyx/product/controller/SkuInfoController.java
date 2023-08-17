@@ -12,6 +12,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * <p>
  * sku信息 前端控制器
@@ -26,35 +28,55 @@ import org.springframework.web.bind.annotation.*;
 public class SkuInfoController {
     @Autowired
     private SkuInfoService skuInfoService;
+
     @ApiOperation("SKU列表")
     @GetMapping("{page}/{limit}")
     public Result getPageList(@PathVariable Long page,
                               @PathVariable Long limit,
-                              SkuInfoQueryVo skuInfoQueryVo){
+                              SkuInfoQueryVo skuInfoQueryVo) {
         Page<SkuInfo> pagelist = new Page<>(page, limit);
-        IPage<SkuInfo>iPage=skuInfoService.selectPageSkuinfo(pagelist,skuInfoQueryVo);
-        return  Result.ok(iPage);
+        IPage<SkuInfo> iPage = skuInfoService.selectPageSkuinfo(pagelist, skuInfoQueryVo);
+        return Result.ok(iPage);
     }
+
     //添加商品sku信息
     @ApiOperation("添加商品sku信息")
     @PostMapping("save")
-    public  Result save(@RequestBody SkuInfoVo skuInfoVo){
+    public Result save(@RequestBody SkuInfoVo skuInfoVo) {
         skuInfoService.saveSkuInfo(skuInfoVo);
         return Result.ok();
     }
-//根据skuId获取sku基本信息
+
+    //根据skuId获取sku基本信息
     @GetMapping("get/{id}")
     @ApiOperation("根据skuId获取sku基本信息")
-public  Result getById(@PathVariable Long id) {
-    SkuInfoVo skuInfoVo = skuInfoService.getSkuInfo(id);
-    return Result.ok(skuInfoVo);
+    public Result getById(@PathVariable Long id) {
+        SkuInfoVo skuInfoVo = skuInfoService.getSkuInfo(id);
+        return Result.ok(skuInfoVo);
     }
-@ApiOperation("修改sku")
+
+    @ApiOperation("修改sku")
     @PutMapping("update")
-public  Result   updateById(@RequestBody SkuInfoVo skuInfoVo) {
-    skuInfoService.updateSkuInfo(skuInfoVo);
-    return Result.ok();
-}
+    public Result updateById(@RequestBody SkuInfoVo skuInfoVo) {
+        skuInfoService.updateSkuInfo(skuInfoVo);
+        return Result.ok();
+    }
+
+    //根据skuId 删除sku
+    @ApiOperation(value = "删除")
+    @DeleteMapping("remove/{id}")
+    public Result remove(@PathVariable Long id) {
+        skuInfoService.removeById(id);
+        return Result.ok();
+    }
+
+    //根据id列表删除,批量删除
+    @ApiOperation(value = "根据id列表删除")
+    @DeleteMapping("batchRemove")
+    public Result batchRemove(@RequestBody List<Long> idList) {
+        skuInfoService.removeByIds(idList);
+        return Result.ok();
+    }
 
 }
 

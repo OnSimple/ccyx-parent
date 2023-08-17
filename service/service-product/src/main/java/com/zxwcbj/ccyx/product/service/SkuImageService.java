@@ -15,6 +15,6 @@ import java.util.List;
  * @since 2023-08-15
  */
 public interface SkuImageService extends IService<SkuImage> {
-//根据id香询商品图片列表
+    //根据id香询商品图片列表
     List<SkuImage> getImageListBySkuId(Long id);
 }

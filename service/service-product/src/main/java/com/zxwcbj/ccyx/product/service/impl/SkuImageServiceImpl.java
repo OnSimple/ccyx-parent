@@ -20,11 +20,11 @@ import java.util.List;
  */
 @Service
 public class SkuImageServiceImpl extends ServiceImpl<SkuImageMapper, SkuImage> implements SkuImageService {
-///根据id香询商品图片列表
+    ///根据id香询商品图片列表
     @Override
     public List<SkuImage> getImageListBySkuId(Long id) {
-        LambdaQueryWrapper<SkuImage> wrapper=new LambdaQueryWrapper<>();
-        wrapper.eq(SkuImage::getSkuId,id);
+        LambdaQueryWrapper<SkuImage> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SkuImage::getSkuId, id);
         List<SkuImage> skuImageList = baseMapper.selectList(wrapper);
         return skuImageList;
     }

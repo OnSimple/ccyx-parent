@@ -110,20 +110,21 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoMapper, SkuInfo> impl
             skuAttrValueService.saveBatch(skuAttrValueList);
         }
     }
-//根据skuId获取sku基本信息
+
+    //根据skuId获取sku基本信息
     @Override
     public SkuInfoVo getSkuInfo(Long id) {
         SkuInfoVo skuInfoVo = new SkuInfoVo();
         //根据id查询sku基本信息
-        SkuInfo skuInfo=baseMapper.selectById(id);
+        SkuInfo skuInfo = baseMapper.selectById(id);
         //根据d查询商品图片列表
-        List<SkuImage> skuImageList=skuImageService.getImageListBySkuId(id);
+        List<SkuImage> skuImageList = skuImageService.getImageListBySkuId(id);
 //根据d查询商品海报列表
-        List<SkuPoster> skuPosterList=skuPosterService.getPosterListBySkuId(id);
+        List<SkuPoster> skuPosterList = skuPosterService.getPosterListBySkuId(id);
 //根据d查询商品属性信息
-        List<SkuAttrValue> skuAttrValueList=skuAttrValueService.getAttrValueListBySkuId(id);
+        List<SkuAttrValue> skuAttrValueList = skuAttrValueService.getAttrValueListBySkuId(id);
         //封装所有数据，返回
-        BeanUtils.copyProperties(skuInfo,skuInfoVo);
+        BeanUtils.copyProperties(skuInfo, skuInfoVo);
         skuInfoVo.setSkuImagesList(skuImageList);
         skuInfoVo.setSkuPosterList(skuPosterList);
         skuInfoVo.setSkuAttrValueList(skuAttrValueList);
@@ -133,10 +134,43 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoMapper, SkuInfo> impl
     @Override
     public void updateSkuInfo(SkuInfoVo skuInfoVo) {
         //修改sku基本信息
-        SkuInfo skuInfo=new SkuInfo();
-        BeanUtils.copyProperties(skuInfoVo,skuInfo);
+        SkuInfo skuInfo = new SkuInfo();
+        BeanUtils.copyProperties(skuInfoVo, skuInfo);
         baseMapper.updateById(skuInfo);
-        skuImageService.removeById(skuInfoVo.getId());
+        Long skuId = skuInfoVo.getId();
+        LambdaQueryWrapper<SkuImage> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SkuImage::getSkuId, skuId);
+        //删除sku图片
+        skuImageService.remove(wrapper);
+        List<SkuImage> skuImageList = skuInfoVo.getSkuImagesList();
+        if (!CollectionUtils.isEmpty(skuImageList)) {
+            int sort = 1;
+            for (SkuImage skuImage : skuImageList) {
+                skuImage.setSkuId(skuId);
+                sort++;
+            }
+            skuImageService.saveBatch(skuImageList);
+        }
+        //删除sku海报
+        skuPosterService.remove(new LambdaQueryWrapper<SkuPoster>().eq(SkuPoster::getSkuId, skuId));
+        List<SkuPoster> skuPosterList = skuInfoVo.getSkuPosterList();
+        if (!CollectionUtils.isEmpty(skuPosterList)) {
+            int sort = 1;
+            for (SkuPoster skuPoster : skuPosterList) {
+                skuPoster.setSkuId(skuId);
+                sort++;
+            }
+            skuPosterService.saveBatch(skuPosterList);
+        }
+        //删除sku平台属性
+        skuAttrValueService.remove(new LambdaQueryWrapper<SkuAttrValue>().eq(SkuAttrValue::getSkuId, skuId));
+        List<SkuAttrValue> skuAttrValueList = skuInfoVo.getSkuAttrValueList( );
+        if (!CollectionUtils.isEmpty(skuImageList)) {
+            for (SkuAttrValue skuAttrValue : skuAttrValueList) {
+                skuAttrValue.setSkuId(skuId);
+            }
+            skuAttrValueService.saveBatch(skuAttrValueList);
+        }
     }
 
 
